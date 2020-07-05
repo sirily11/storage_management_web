@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @format */
+
+import React from "react";
+import "./App.css";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { CssBaseline, ThemeProvider, createMuiTheme } from "@material-ui/core";
+import HomePage from "./components/pages/home/HomePage";
+import HomeProvider from "./components/models/HomeContext";
+import { cyan, blue } from "@material-ui/core/colors";
+import DetailPage from "./components/pages/detail/DetailPage";
+import DetailProvider from "./components/models/DetailContext";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: cyan,
+    secondary: blue,
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <HomeProvider>
+        <Router>
+          <CssBaseline />
+          <Switch>
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+            <Route path="/detail/:id" exact>
+              <DetailProvider>
+                <DetailPage />
+              </DetailProvider>
+            </Route>
+          </Switch>
+        </Router>
+      </HomeProvider>
+    </ThemeProvider>
   );
 }
 
