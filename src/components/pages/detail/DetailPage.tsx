@@ -1,6 +1,9 @@
 /** @format */
 
 import React from "react";
+//@ts-ignore
+import { Helmet } from "react-helmet";
+
 import { useRouteMatch } from "react-router-dom";
 import { DetailContext } from "../../models/DetailContext";
 import {
@@ -44,6 +47,9 @@ export default function DetailPage() {
 
   return (
     <div style={{ height: "100vh" }}>
+      <Helmet>
+        {item === undefined ? <title>Item</title> : <title>{item.name}</title>}
+      </Helmet>
       {item && (
         <Fade in={true}>
           <Box my={2} mx={2}>

@@ -3,7 +3,13 @@
 import React from "react";
 import "./App.css";
 import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { CssBaseline, ThemeProvider, createMuiTheme } from "@material-ui/core";
+import {
+  CssBaseline,
+  ThemeProvider,
+  createMuiTheme,
+  AppBar,
+  Toolbar,
+} from "@material-ui/core";
 import HomePage from "./components/pages/home/HomePage";
 import HomeProvider from "./components/models/HomeContext";
 import { cyan, blue } from "@material-ui/core/colors";

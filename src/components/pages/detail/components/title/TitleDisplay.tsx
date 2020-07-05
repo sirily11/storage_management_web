@@ -10,8 +10,9 @@ export default function TitleDisplay(props: { item: DetailStorageItem }) {
   const { item } = props;
 
   return (
-    <Box mt={4}>
+    <Box mt={1}>
       <Breadcrumbs>
+        <NavLink to={`/`}>Home</NavLink>
         <NavLink to={`/?location=${item.location_name.id}`}>
           {item.location_name.name}
         </NavLink>

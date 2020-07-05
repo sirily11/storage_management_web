@@ -15,6 +15,9 @@ import RightContent from "./right/RightContent";
 import { Toolbar } from "@material-ui/core";
 import { kDrawerWidth } from "../../models/utils/values";
 import { useLocation } from "react-router-dom";
+//@ts-ignore
+import { Helmet } from "react-helmet";
+
 import queryString from "query-string";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -72,6 +75,9 @@ export default function HomePage() {
   }, [search]);
   return (
     <div>
+      <Helmet>
+        <title>Storage Management System</title>
+      </Helmet>
       <LeftSidebar />
       <RightContent />
       <Backdrop className={classes.backdrop} open={isLoading}>

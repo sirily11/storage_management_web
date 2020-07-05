@@ -9,6 +9,8 @@ import {
   CardMedia,
   useTheme,
   useMediaQuery,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
@@ -18,7 +20,9 @@ export default function ItemDescription(props: { item: DetailStorageItem }) {
 
   return (
     <Box mt={4} ml={2}>
-      <Typography>{item.description}</Typography>
+      <ListItem>
+        <ListItemText primary="简介" secondary={item.description} />
+      </ListItem>
     </Box>
   );
 }

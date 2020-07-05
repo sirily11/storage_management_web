@@ -22,6 +22,8 @@ import {
   TableBody,
   TableCell,
   Grid,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
@@ -36,17 +38,35 @@ export default function DetailDescription(props: { item: DetailStorageItem }) {
   return (
     <Box mt={4} ml={2}>
       <Typography variant="h6">Category Details</Typography>
-      <NavLink to={`/?category=${item.category_name.id}`}>
-        <Typography variant="subtitle2">{item.category_name.name}</Typography>
-      </NavLink>
+      <ListItem>
+        <ListItemText
+          primary="Category Name"
+          secondary={
+            <NavLink to={`/?category=${item.category_name.id}`}>
+              <Typography variant="subtitle2">
+                {item.category_name.name}
+              </Typography>
+            </NavLink>
+          }
+        />
+      </ListItem>
+
       <Box m={3} />
       <Typography variant="h6">Series Details</Typography>
-      <Typography variant="subtitle2">{item.series_name.name}</Typography>
-      <Typography>{item.series_name.description}</Typography>
+      <ListItem>
+        <ListItemText
+          primary={item.series_name.name}
+          secondary={item.series_name.description}
+        />
+      </ListItem>
       <Box m={3} />
       <Typography variant="h6">Author Details</Typography>
-      <Typography variant="subtitle2">{item.author_name.name}</Typography>
-      <Typography>{item.author_name.description}</Typography>
+      <ListItem>
+        <ListItemText
+          primary={item.author_name.name}
+          secondary={item.author_name.description}
+        />
+      </ListItem>
       <Box m={3} />
       <Typography variant="h6">Location Details</Typography>
       <Grid container>
@@ -89,12 +109,10 @@ export default function DetailDescription(props: { item: DetailStorageItem }) {
       <Typography variant="h6">Position Details</Typography>
       <Grid container>
         <Grid item xs={12} md={6}>
-          <Typography variant="subtitle2">
-            {item.position_name.position}
-          </Typography>
-          <Typography variant="body1">
-            {item.position_name.description ?? "No Description"}
-          </Typography>
+          <ListItemText
+            primary={item.position_name.position}
+            secondary={item.position_name.description ?? "No Description"}
+          />
         </Grid>
         <Grid item xs={12} md={6}>
           {item.position_name.image && (
