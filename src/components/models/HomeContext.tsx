@@ -133,8 +133,8 @@ export default class HomeProvider extends Component<Props, State> {
         location !== undefined
       ) {
         url = `${itemURL}/?category=${category ?? ""}&location=${
-          position ?? ""
-        }&detail_position=${location ?? ""}`;
+          location ?? ""
+        }&detail_position=${position ?? ""}`;
       }
       let response = await Axios.get(url);
       this.setState({

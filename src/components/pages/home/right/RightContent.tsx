@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme: Theme) =>
       width: `calc(100% - ${kDrawerWidth}px)`,
       marginLeft: kDrawerWidth,
       marginTop: 30,
+      paddingLeft: 20,
+      paddingRight: 20,
     },
   })
 );
@@ -29,10 +31,10 @@ export default function RightContent() {
   const { nextURL } = React.useContext(HomeContext);
 
   return (
-    <Container className={classes.content}>
+    <div className={classes.content}>
       <Headerbar />
       <ItemDisplay />
       {nextURL && <Button>Load More</Button>}
-    </Container>
+    </div>
   );
 }
