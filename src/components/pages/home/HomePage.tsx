@@ -8,6 +8,8 @@ import {
   Backdrop,
   CircularProgress,
   Snackbar,
+  Hidden,
+  Drawer,
 } from "@material-ui/core";
 import LeftSidebar from "./left/LeftSidebar";
 import { HomeContext } from "../../models/HomeContext";
@@ -23,7 +25,10 @@ import queryString from "query-string";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     appbar: {
-      width: `calc(100% - ${kDrawerWidth}px)`,
+      [theme.breakpoints.up("sm")]: {
+        width: `calc(100% - ${kDrawerWidth}px)`,
+      },
+
       marginLeft: kDrawerWidth,
     },
     content: {
@@ -46,6 +51,8 @@ export default function HomePage() {
     fetchItem,
     fetchSettings,
     updateCurrentSettings,
+    openDrawer,
+    setOpenDrawer,
     error,
   } = React.useContext(HomeContext);
 
@@ -78,8 +85,15 @@ export default function HomePage() {
       <Helmet>
         <title>Storage Management System</title>
       </Helmet>
-      <LeftSidebar />
+      <Hidden xsDown>
+        <LeftSidebar />
+      </Hidden>
       <RightContent />
+      <Hidden smUp>
+        <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
+          <LeftSidebar />
+        </Drawer>
+      </Hidden>
       <Backdrop className={classes.backdrop} open={isLoading}>
         <CircularProgress color="inherit" />
       </Backdrop>

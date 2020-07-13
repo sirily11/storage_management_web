@@ -14,7 +14,10 @@ import {
   Grid,
   Fade,
   Breadcrumbs,
+  Hidden,
+  IconButton,
 } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
 import { kDrawerWidth } from "../../../../models/utils/values";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -35,12 +38,21 @@ export default function Headerbar() {
     currentCategory,
     currentLocation,
     currentPosition,
+    setOpenDrawer,
   } = React.useContext(HomeContext);
   const classes = useStyles();
+
   return (
     <Box display="block" mt={1}>
       <Box my={1}>
         <Grid container>
+          <Grid item>
+            <Hidden smUp>
+              <IconButton onClick={() => setOpenDrawer(true)}>
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
+          </Grid>
           <Grid item>
             <Avatar className={classes.large} src={currentPosition?.image} />
           </Grid>

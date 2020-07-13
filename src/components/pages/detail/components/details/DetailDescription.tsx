@@ -119,7 +119,7 @@ export default function DetailDescription(props: { item: DetailStorageItem }) {
             <Box ml={3}>
               <CardMedia
                 image={item.position_name.image}
-                style={{ height: 300 }}
+                style={{ height: 500 }}
               />
             </Box>
           )}

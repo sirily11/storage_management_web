@@ -12,7 +12,7 @@ export default function ItemDisplay() {
     <Box mt={3}>
       <Grid container spacing={3}>
         {items.map((i, index) => (
-          <Grid item key={index} sm={4} lg={3}>
+          <Grid item key={index} sm={4} lg={3} xs={12}>
             <StorageItem item={i} />
           </Grid>
         ))}

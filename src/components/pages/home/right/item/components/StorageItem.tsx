@@ -24,7 +24,7 @@ export default function StorageItem(props: Props) {
   const { item } = props;
 
   return (
-    <Card elevation={14} raised>
+    <div>
       {item.images.length > 0 ? (
         <CardMedia
           image={item.images[0].image}
@@ -51,7 +51,7 @@ export default function StorageItem(props: Props) {
           {item.name}
         </Typography>
         <Typography variant="body2" noWrap>
-          {item.description}
+          {item.description.length === 0 ? "No Description" : item.description}
         </Typography>
         <Button
           onClick={() => {
@@ -65,6 +65,6 @@ export default function StorageItem(props: Props) {
           详情
         </Button>
       </CardContent>
-    </Card>
+    </div>
   );
 }

@@ -18,8 +18,11 @@ import Headerbar from "./header/Headerbar";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     content: {
-      width: `calc(100% - ${kDrawerWidth}px)`,
-      marginLeft: kDrawerWidth,
+      [theme.breakpoints.up("sm")]: {
+        width: `calc(100% - ${kDrawerWidth}px)`,
+        marginLeft: kDrawerWidth,
+      },
+
       marginTop: 30,
       paddingLeft: 20,
       paddingRight: 20,
@@ -28,13 +31,21 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 export default function RightContent() {
   const classes = useStyles();
-  const { nextURL } = React.useContext(HomeContext);
+  const { nextURL, fetchMore } = React.useContext(HomeContext);
 
   return (
     <div className={classes.content}>
       <Headerbar />
       <ItemDisplay />
-      {nextURL && <Button>Load More</Button>}
+      {nextURL && (
+        <Button
+          onClick={async () => {
+            await fetchMore();
+          }}
+        >
+          Load More
+        </Button>
+      )}
     </div>
   );
 }

@@ -18,6 +18,7 @@ interface State {
   settings: Settings;
   nextURL?: string;
   error?: string;
+  openDrawer: boolean;
   currentCategory?: Category;
   currentPosition?: Position;
   currentLocation?: Location;
@@ -34,6 +35,7 @@ interface State {
     location?: any;
   }): Promise<void>;
   fetchMore(): Promise<void>;
+  setOpenDrawer(value: boolean): void;
 }
 
 interface Props {}
@@ -48,6 +50,7 @@ export default class HomeProvider extends Component<Props, State> {
     super(props);
     this.state = {
       isLoading: false,
+      openDrawer: false,
       items: [],
       settings: {
         categories: [],
@@ -56,6 +59,7 @@ export default class HomeProvider extends Component<Props, State> {
         series: [],
         authors: [],
       },
+      setOpenDrawer: this.setOpenDrawer,
       updateCurrentSettings: this.updateCurrentSettings,
       fetchItem: this.fetchItem,
       fetchMore: this.fetchMore,
@@ -87,6 +91,10 @@ export default class HomeProvider extends Component<Props, State> {
     this.setState({
       error: undefined,
     });
+  };
+
+  setOpenDrawer = (v: boolean) => {
+    this.setState({ openDrawer: v });
   };
 
   updateCurrentSettings = (
