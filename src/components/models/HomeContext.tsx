@@ -163,8 +163,14 @@ export default class HomeProvider extends Component<Props, State> {
     try {
       this.beforeFetch();
       let response = await Axios.get(nextURL);
+      let moreResults: AbstractStorageItem[] = response.data.results;
+
+      let oldItems = this.state.items;
+
+      moreResults.forEach((i) => oldItems.push(i));
+
       this.setState({
-        items: response.data.results,
+        items: oldItems,
         nextURL: response.data.next,
       });
     } catch (err) {
